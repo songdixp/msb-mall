@@ -1,0 +1,40 @@
+﻿# 注册中心的信息
+spring:
+  application:
+    name: mall-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    gateway:
+      routes:
+        - id: route1  # 测试1
+          uri: https://www.baidu.com
+          predicates:
+            - Query=url,baidu  # 满足这个条件就访问 baidu.com
+        - id: route2  # 测试2
+          uri: https://www.jd.com
+          predicates:
+            - Query=url,jd
+        - id: product_route  # 商品服务
+          uri: lb://mall-product
+          predicates:
+            - Path=/app/product/**
+          filters:
+            - RewritePath=/app/(?<segment>/?.*), /$\{segment}
+        - id: third-route  # 三方服务
+          uri: lb://mall-third
+          predicates:
+            - Path=/app/third/**
+          filters:
+            - RewritePath=/app/(?<segment>/?.*), /$\{segment}
+        - id: login_route  # 登录
+          uri: lb://renren-fast
+          predicates:
+            - Path=/app/**
+          filters:
+            - RewritePath=/app/(?<segment>/?.*), /renren-fast/$\{segment}
+
+# 指定注册中心的服务端口
+server:
+  port: 8070

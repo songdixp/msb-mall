@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.msb.common.utils.PageUtils;
 import com.msb.mall.product.entity.CategoryEntity;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -12,5 +13,19 @@ import java.util.Map;
 public interface CategoryService extends IService<CategoryEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    /**
+     * 查询所有的category数据，然后返回树形结构给前端展示
+     * @param params
+     * @return
+     */
+    List<CategoryEntity> queryPageTree(Map<String, Object> params);
+
+    /**
+     * 逻辑删除 在entity实体类单独设置了
+     * TableLogic(value = "1", delval = "0")
+     * @param catIds  Long 类型的数组 传入catId
+     */
+    void removeCategoryByIds(List<Long> catIds);
 }
 

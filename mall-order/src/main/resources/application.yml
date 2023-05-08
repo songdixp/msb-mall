@@ -8,6 +8,10 @@ spring:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
+#      serverAddr: 127.0.0.1:8848
+#  config:
+#    import:
+#      - nacos:mall-order.properties?refresh=true
   application:
     name: mall-order
 
@@ -19,3 +23,8 @@ mybatis-plus:
 
 server:
   port: 8030
+
+user:
+  userName: application.zhangsan
+  age: 18
+

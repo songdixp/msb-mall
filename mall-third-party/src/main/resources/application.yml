@@ -1,0 +1,17 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    alicloud:
+      access-key: LTAI5tAXhTRSDupN7Mddf465
+      secret-key: GrY0ZvKfFTKOjwoPbDsnROyRFP4CV4
+      bucket: sason-msb-mall
+      oss:
+        endpoint: oss-cn-hangzhou.aliyuncs.com
+
+  application:
+    name: mall-third
+
+server:
+  port: 8090

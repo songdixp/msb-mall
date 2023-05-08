@@ -1,6 +1,7 @@
 package com.msb.mall.product.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +17,11 @@ import com.msb.common.utils.PageUtils;
 import com.msb.common.utils.R;
 
 
-
 /**
  * 商品三级分类
  */
 @RestController
-@RequestMapping("product/category")
+@RequestMapping("/product/category")
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;
@@ -30,10 +30,15 @@ public class CategoryController {
      * 列表
      */
     @RequestMapping("/list")
-        public R list(@RequestParam Map<String, Object> params){
+    public R list(@RequestParam Map<String, Object> params) {
         PageUtils page = categoryService.queryPage(params);
-
         return R.ok().put("page", page);
+    }
+
+    @RequestMapping("/listTree")
+    public R listTree(@RequestParam Map<String, Object> params) {
+        List<CategoryEntity> list = categoryService.queryPageTree(params);
+        return R.ok().put("data", list);
     }
 
 
@@ -41,8 +46,8 @@ public class CategoryController {
      * 信息
      */
     @RequestMapping("/info/{catId}")
-        public R info(@PathVariable("catId") Long catId){
-		CategoryEntity category = categoryService.getById(catId);
+    public R info(@PathVariable("catId") Long catId) {
+        CategoryEntity category = categoryService.getById(catId);
 
         return R.ok().put("category", category);
     }
@@ -52,8 +57,8 @@ public class CategoryController {
      */
     @RequestMapping("/save")
     // @RequiresPermissions("product:category:save")
-    public R save(@RequestBody CategoryEntity category){
-		categoryService.save(category);
+    public R save(@RequestBody CategoryEntity category) {
+        categoryService.save(category);
 
         return R.ok();
     }
@@ -62,19 +67,30 @@ public class CategoryController {
      * 修改
      */
     @RequestMapping("/update")
-        public R update(@RequestBody CategoryEntity category){
-		categoryService.updateById(category);
+    public R update(@RequestBody CategoryEntity category) {
+        categoryService.updateById(category);
 
+        return R.ok();
+    }
+    /**
+     * 批量修改
+     */
+    @RequestMapping("/updateBatch")
+    public R updateBatch(@RequestBody CategoryEntity[] category) {
+        // categoryService.updateById(category);
+
+        categoryService.updateBatchById(Arrays.asList(category));
+        System.out.println("进来没有？？？？？？"+Arrays.asList(category));
         return R.ok();
     }
 
     /**
-     * 删除
+     * 逻辑删除
      */
     @RequestMapping("/delete")
-        public R delete(@RequestBody Long[] catIds){
-		categoryService.removeByIds(Arrays.asList(catIds));
-
+    public R delete(@RequestBody List<Long> catIds) {
+        // categoryService.removeByIds(Arrays.asList(catIds));真实删除
+        categoryService.removeCategoryByIds(catIds);
         return R.ok();
     }
 

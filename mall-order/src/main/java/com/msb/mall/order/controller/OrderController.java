@@ -5,6 +5,8 @@ import java.util.Map;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,11 +23,21 @@ import com.msb.common.utils.R;
 /**
  * 订单
  */
+@RefreshScope // 动态刷新注解
 @RestController
-@RequestMapping("order/order")
+@RequestMapping("/order/order")
 public class OrderController {
     @Autowired
     private OrderService orderService;
+    @Value("${user.userName}")
+    private String userName;
+    @Value("${user.age}")
+    private Integer age;
+    @RequestMapping("/users")
+    public R queryUser(){
+        System.out.println("查询所有的用户 user...");
+        return R.ok().put("userName", userName).put("age", age);
+    }
 
     /**
      * 列表

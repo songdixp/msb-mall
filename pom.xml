@@ -19,5 +19,6 @@
         <module>mall-ware</module>
         <module>renren-fast-master</module>
         <module>renren-generator-master</module>
+        <module>mall-third-party</module>
     </modules>
 </project>

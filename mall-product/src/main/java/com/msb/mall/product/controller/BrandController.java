@@ -1,9 +1,14 @@
 package com.msb.mall.product.controller;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,12 +20,15 @@ import com.msb.mall.product.service.BrandService;
 import com.msb.common.utils.PageUtils;
 import com.msb.common.utils.R;
 
+import javax.validation.Valid;
+
 
 /**
  * 品牌
  */
+
 @RestController
-@RequestMapping("product/brand")
+@RequestMapping("/product/brand")
 public class BrandController {
     @Autowired
     private BrandService brandService;
@@ -31,6 +39,7 @@ public class BrandController {
     * */
     @RequestMapping("/queryAll")
     public R queryAllBrand(){
+        System.out.println("进入product服务：/product/brand/queryAll");
         BrandEntity brand = new BrandEntity();
         brand.setName("测试数据：华为");
         return R.ok().put("brand", brand);
@@ -61,12 +70,27 @@ public class BrandController {
      * 保存
      */
     @RequestMapping("/save")
-    // @RequiresPermissions("product:brand:save")
-    public R save(@RequestBody BrandEntity brand) {
+    public R save(@Valid @RequestBody BrandEntity brand) {
         brandService.save(brand);
-
         return R.ok();
     }
+    /*
+    @RequestMapping("/save")
+    // @RequiresPermissions("product:brand:save")
+    public R save(@Valid @RequestBody BrandEntity brand, BindingResult result) {
+        if (result.hasErrors()) {
+            Map<String, String> map = new HashMap<>();
+            List<FieldError> fieldErrors = result.getFieldErrors();
+            for (FieldError fieldError : fieldErrors) {
+                String field = fieldError.getField();
+                String defaultMessage = fieldError.getDefaultMessage();
+                map.put(field, defaultMessage);
+            }
+            return R.error(400,"字段数据不合法").put("message", map);
+        }
+        brandService.save(brand);
+        return R.ok();
+    }*/
 
     /**
      * 修改
