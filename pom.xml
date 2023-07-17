@@ -20,5 +20,8 @@
         <module>renren-fast-master</module>
         <module>renren-generator-master</module>
         <module>mall-third-party</module>
+        <module>mall-search</module>
+        <module>mall-auth</module>
+        <module>mall-cart</module>
     </modules>
 </project>

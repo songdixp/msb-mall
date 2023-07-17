@@ -18,6 +18,7 @@
         <spring-cloud.version>2020.0.1</spring-cloud.version>
     </properties>
     <dependencies>
+
         <dependency>
             <groupId>com.msb</groupId>
             <artifactId>mall-commons</artifactId>
@@ -26,6 +27,17 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!--处理Object对象强转-->
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>1.9.4</version>
+        </dependency>
+        <!--product： 查询skuInfo表中的skuName-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-loadbalancer</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -36,6 +48,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.79</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
     <dependencyManagement>

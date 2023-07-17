@@ -5,7 +5,7 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 127.0.0.1:8848
+        server-addr: 192.168.31.225:8848
     gateway:
       routes:
         - id: route1  # 测试1
@@ -28,12 +28,49 @@ spring:
             - Path=/app/third/**
           filters:
             - RewritePath=/app/(?<segment>/?.*), /$\{segment}
-        - id: login_route  # 登录
+        - id: member-route  # 会员服务
+          uri: lb://mall-member
+          predicates:
+            - Path=/app/member/**
+          filters:
+            - RewritePath=/app/(?<segment>/?.*), /$\{segment}
+        - id: ware-route  # 库存管理服务
+          uri: lb://mall-ware
+          predicates:
+            - Path=/app/ware/**
+          filters:
+            - RewritePath=/app/(?<segment>/?.*), /$\{segment}
+        - id: login_route  # renren-fast 登录验证码
           uri: lb://renren-fast
           predicates:
             - Path=/app/**
           filters:
             - RewritePath=/app/(?<segment>/?.*), /renren-fast/$\{segment}
+        - id: mall_msb_host_route  # 前端的首页 mall.msb.com
+          uri: lb://mall-product
+          predicates:
+            - Host=mall.msb.com
+        - id: search_msb_host_route  # 搜索跳转首页 search.msb.com
+          uri: lb://mall-search
+          predicates:
+            - Host=search.msb.com
+        - id: item_msb_host_route  # 商品详情页面 item.msb.com
+          uri: lb://mall-product
+          predicates:
+            - Host=item.msb.com
+        - id: auth_msb_host_route  # 商品详情页面 auth.msb.com
+          uri: lb://mall-auth
+          predicates:
+            - Host=auth.msb.com
+        - id: cart_msb_host_route  # 商品详情页面 cart.msb.com
+          uri: lb://mall-cart
+          predicates:
+            - Host=cart.msb.com
+        - id: order_msb_host_route  # 商品详情页面 order.msb.com
+          uri: lb://mall-order
+          predicates:
+            - Host=order.msb.com
+
 
 # 指定注册中心的服务端口
 server:

@@ -8,7 +8,7 @@
 
 package com.msb.common.xss;
 
-import com.msb.common.RRException.RRException;
+import com.msb.common.exception.RRException;
 import org.apache.commons.lang.StringUtils;
 
 /**

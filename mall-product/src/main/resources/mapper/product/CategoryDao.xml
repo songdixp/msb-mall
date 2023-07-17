@@ -15,6 +15,12 @@
         <result property="productUnit" column="product_unit"/>
         <result property="productCount" column="product_count"/>
     </resultMap>
+    <select id="getCategoryLevel1" resultMap="categoryMap">
+        select * from pms_category where parent_cid=0
+    </select>
+    <select id="selectCatalogLevelByParentCid" resultMap="categoryMap">
+        select * from pms_category where parent_cid=#{catId}
+    </select>
 
 
 </mapper>

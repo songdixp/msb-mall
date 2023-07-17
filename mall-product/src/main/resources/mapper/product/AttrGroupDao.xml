@@ -13,5 +13,31 @@
         <result property="catelogId" column="catelog_id"/>
     </resultMap>
 
+    <resultMap id="SpuItemGroupAttrVo" type="com.msb.mall.product.vo.SpuItemGroupAttrVo" >
+        <result property="groupName" column="attr_group_name"/>
+        <collection property="baseAttrs" ofType="com.msb.mall.product.vo.Attr">
+            <id property="attrId" column="attr_id"/>
+            <result property="attrName" column="attr_name"/>
+            <result property="attrValue" column="attr_value"/>
+        </collection>
+
+    </resultMap>
+    <select id="getAttrgroupBySpuId" resultMap="SpuItemGroupAttrVo">
+        SELECT
+            t1.attr_group_id,
+            t1.attr_group_name,
+            t2.attr_id,
+            t3.attr_name,
+            t4.attr_value
+        FROM
+            `pms_attr_group` t1
+                LEFT JOIN `pms_attr_attrgroup_relation` t2 ON t1.attr_group_id = t2.attr_group_id
+                LEFT JOIN `pms_attr` t3 ON t2.attr_id = t3.attr_id
+                LEFT JOIN `pms_product_attr_value` t4 ON t4.attr_id = t2.attr_id
+        WHERE
+            t1.catelog_id = #{catalogId}
+          AND t4.spu_id = #{spuId}
+    </select>
+
 
 </mapper>

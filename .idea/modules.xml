@@ -2,12 +2,20 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/mall-auth/mall-auth.iml" filepath="$PROJECT_DIR$/mall-auth/mall-auth.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mall-cart/mall-cart.iml" filepath="$PROJECT_DIR$/mall-cart/mall-cart.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mall-commons/mall-commons.iml" filepath="$PROJECT_DIR$/mall-commons/mall-commons.iml" />
       <module fileurl="file://$PROJECT_DIR$/mall-coupon/mall-coupon.iml" filepath="$PROJECT_DIR$/mall-coupon/mall-coupon.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mall-gateway/mall-gateway.iml" filepath="$PROJECT_DIR$/mall-gateway/mall-gateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/mall-member/mall-member.iml" filepath="$PROJECT_DIR$/mall-member/mall-member.iml" />
       <module fileurl="file://$PROJECT_DIR$/mall-order/mall-order.iml" filepath="$PROJECT_DIR$/mall-order/mall-order.iml" />
       <module fileurl="file://$PROJECT_DIR$/mall-product/mall-product.iml" filepath="$PROJECT_DIR$/mall-product/mall-product.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mall-search/mall-search.iml" filepath="$PROJECT_DIR$/mall-search/mall-search.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mall-third-party/mall-third-party.iml" filepath="$PROJECT_DIR$/mall-third-party/mall-third-party.iml" />
       <module fileurl="file://$PROJECT_DIR$/mall-ware/mall-ware.iml" filepath="$PROJECT_DIR$/mall-ware/mall-ware.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/msb-mall.iml" filepath="$PROJECT_DIR$/.idea/msb-mall.iml" />
+      <module fileurl="file://$PROJECT_DIR$/renren-fast-master/renren-fast.iml" filepath="$PROJECT_DIR$/renren-fast-master/renren-fast.iml" />
+      <module fileurl="file://$PROJECT_DIR$/renren-generator-master/renren-generator.iml" filepath="$PROJECT_DIR$/renren-generator-master/renren-generator.iml" />
     </modules>
   </component>
 </project>

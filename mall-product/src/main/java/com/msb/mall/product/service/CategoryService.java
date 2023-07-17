@@ -3,6 +3,7 @@ package com.msb.mall.product.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.msb.common.utils.PageUtils;
 import com.msb.mall.product.entity.CategoryEntity;
+import com.msb.mall.product.vo.Catalog2VO;
 
 import java.util.List;
 import java.util.Map;
@@ -27,5 +28,14 @@ public interface CategoryService extends IService<CategoryEntity> {
      * @param catIds  Long 类型的数组 传入catId
      */
     void removeCategoryByIds(List<Long> catIds);
+
+    Long[] findCatelogPath(Long catelogId);
+
+    void updateDetails(CategoryEntity category);
+
+    List<CategoryEntity> getCategoryLevel1();
+
+    Map<String, List<Catalog2VO>> getCatalog2JSON();
+
 }
 

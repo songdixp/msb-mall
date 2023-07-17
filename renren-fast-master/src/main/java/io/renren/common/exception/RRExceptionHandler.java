@@ -7,7 +7,6 @@
  */
 
 package io.renren.common.exception;
-
 import io.renren.common.utils.R;
 import org.apache.shiro.authz.AuthorizationException;
 import org.slf4j.Logger;

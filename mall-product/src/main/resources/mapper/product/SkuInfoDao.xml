@@ -17,6 +17,9 @@
         <result property="price" column="price"/>
         <result property="saleCount" column="sale_count"/>
     </resultMap>
+    <select id="getSkuSaleAttrsBySkuId" resultType="java.lang.String">
+        select concat(attr_name,":","attr_value") from `pms_sku_sale_attr_value` where sku_id=#{skuId}
+    </select>
 
 
 </mapper>

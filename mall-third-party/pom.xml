@@ -51,6 +51,16 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <!--配置解析 configuration processor-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <version>2.6.3</version>
+        </dependency>
+
+
+
+
     </dependencies>
     <dependencyManagement>
         <dependencies>

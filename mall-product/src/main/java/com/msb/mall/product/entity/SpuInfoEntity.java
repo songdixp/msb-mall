@@ -2,11 +2,12 @@ package com.msb.mall.product.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-
-import java.math.BigDecimal;
-import java.io.Serializable;
-import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * spu信息
@@ -48,10 +49,8 @@ public class SpuInfoEntity implements Serializable {
 	/**
 	 * 
 	 */
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date createTime;
-	/**
-	 * 
-	 */
 	private Date updateTime;
 
 }

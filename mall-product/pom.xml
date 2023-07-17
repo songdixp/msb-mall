@@ -8,7 +8,7 @@
         <version>2.4.12</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.msb.mall</groupId>
+    <groupId>com.msb</groupId>
     <artifactId>mall-product</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>mall-product</name>
@@ -18,11 +18,42 @@
         <spring-cloud.version>2020.0.1</spring-cloud.version>
     </properties>
     <dependencies>
+        <!--springcache-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
+        </dependency>
+        <!--redisson-->
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson</artifactId>
+            <version>3.16.1</version>
+        </dependency>
         <!--引入commons模块-->
         <dependency>
             <groupId>com.msb</groupId>
             <artifactId>mall-commons</artifactId>
             <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <!--远程服务调用 product :: coupon ware::ware_sku-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-loadbalancer</artifactId>
+        </dependency>
+        <!--首页模板渲染-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+        <!--热部署-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
 
 

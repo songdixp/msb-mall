@@ -2,13 +2,19 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 127.0.0.1:8848
+        server-addr: 192.168.31.225:8848
     alicloud:
       access-key: LTAI5tAXhTRSDupN7Mddf465
       secret-key: GrY0ZvKfFTKOjwoPbDsnROyRFP4CV4
       bucket: sason-msb-mall
       oss:
         endpoint: oss-cn-hangzhou.aliyuncs.com
+      sms:
+        host: https://dfsns.market.alicloudapi.com
+        path: /data/send_sms
+        method: POST
+        appcode: 4bbc3009bf04493b9ae2e94e7a80a8ee
+
 
   application:
     name: mall-third

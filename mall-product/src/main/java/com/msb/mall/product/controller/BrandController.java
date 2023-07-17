@@ -5,10 +5,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.msb.common.valid.groups.AddGroupsInterface;
+import com.msb.common.valid.groups.UpdateGroupsInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,9 +37,10 @@ public class BrandController {
     private BrandService brandService;
 
 
-    /*
-    * 对 order 服务暴露一个查询产品商标的接口
-    * */
+    /**
+     * 测试接口，查询所有品牌
+     * @return
+     */
     @RequestMapping("/queryAll")
     public R queryAllBrand(){
         System.out.println("进入product服务：/product/brand/queryAll");
@@ -46,7 +50,7 @@ public class BrandController {
     }
 
     /**
-     * 列表
+     * 所有品牌列表
      */
     @RequestMapping("/list")
     public R list(@RequestParam Map<String, Object> params) {
@@ -57,7 +61,7 @@ public class BrandController {
 
 
     /**
-     * 信息
+     * 查询品牌信息
      */
     @RequestMapping("/info/{brandId}")
     public R info(@PathVariable("brandId") Long brandId) {
@@ -67,38 +71,28 @@ public class BrandController {
     }
 
     /**
-     * 保存
+     * 添加品牌
+     * 走的是添加校验的分组 AddGroupInterface
      */
     @RequestMapping("/save")
-    public R save(@Valid @RequestBody BrandEntity brand) {
+    public R save(
+            @Validated(AddGroupsInterface.class)
+            @RequestBody BrandEntity brand) {
         brandService.save(brand);
         return R.ok();
     }
-    /*
-    @RequestMapping("/save")
-    // @RequiresPermissions("product:brand:save")
-    public R save(@Valid @RequestBody BrandEntity brand, BindingResult result) {
-        if (result.hasErrors()) {
-            Map<String, String> map = new HashMap<>();
-            List<FieldError> fieldErrors = result.getFieldErrors();
-            for (FieldError fieldError : fieldErrors) {
-                String field = fieldError.getField();
-                String defaultMessage = fieldError.getDefaultMessage();
-                map.put(field, defaultMessage);
-            }
-            return R.error(400,"字段数据不合法").put("message", map);
-        }
-        brandService.save(brand);
-        return R.ok();
-    }*/
+
 
     /**
-     * 修改
+     * 更新品牌
+     * 走更新分组校验 UpdateGroupsInterface
      */
     @RequestMapping("/update")
-    public R update(@RequestBody BrandEntity brand) {
-        brandService.updateById(brand);
-
+    public R update(
+            @Validated(UpdateGroupsInterface.class)
+            @RequestBody BrandEntity brand) {
+        // brandService.updateById(brand);
+        brandService.updateDetails(brand);
         return R.ok();
     }
 
