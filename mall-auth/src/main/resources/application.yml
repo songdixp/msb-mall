@@ -1,0 +1,25 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.31.225:8848
+  application:
+    name: mall-auth
+  # 统一的全局的--设置服务器响应给客户端的日期时间格式
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+  thymeleaf:
+    cache: false # 关闭Thymeleaf的缓存
+  redis:
+    host: 192.168.31.225
+    port: 6379
+  session:
+    store-type: redis
+    redis:
+      namespace: spring:session # 前缀
+
+server:
+  port: 30000
+  servlet:
+    session:
+      timeout: 30m # session超时30分钟
